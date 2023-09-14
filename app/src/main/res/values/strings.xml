@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DebtsTracker</string>
+    <string name="menu_b_create">Create</string>
+    <string name="menu_b_history">History</string>
+    <string name="create_tv_sum">Sum</string>
+    <string name="create_tv_client">Client</string>
+    <string name="create_tv_enable_limit">Expiration date</string>
+    <string name="create_tv_date_ph">Select date</string>
 </resources>
