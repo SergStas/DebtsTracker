@@ -6,5 +6,6 @@ data class Debt(
     val currency: Currency,
     val sum: Double,
     val creationDate: Long,
+    val expirationDate: Long,
     val description: String,
 )
