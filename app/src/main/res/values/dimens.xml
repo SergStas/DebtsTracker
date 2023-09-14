@@ -2,7 +2,10 @@
 <resources>
     <dimen name="m1">24dp</dimen>
     <dimen name="m2">12dp</dimen>
+    <dimen name="m5">4dp</dimen>
 
     <dimen name="font_h1">32sp</dimen>
     <dimen name="font_h5">18sp</dimen>
+    <dimen name="font_h6">18sp</dimen>
+    <dimen name="font_h10">12sp</dimen>
 </resources>

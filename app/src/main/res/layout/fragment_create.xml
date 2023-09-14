@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.create.CreateFragment"
     android:background="@color/app_background"
+    android:orientation="vertical"
     android:paddingHorizontal="@dimen/m2"
     android:paddingVertical="@dimen/m1">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:contentPadding="@dimen/m1">
+        style="@style/App.Card.Large">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,7 +23,7 @@
                 android:id="@+id/tv_sum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tv_client"
                 app:layout_constraintTop_toTopOf="@id/et_sum"
                 app:layout_constraintBottom_toBottomOf="@id/et_sum"
                 style="@style/App.Text.H5"
@@ -39,11 +37,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_sum"
                 android:layout_marginHorizontal="@dimen/m2"
-                android:hint="0.00"
-                style="@style/App.Text.H5"
-                android:backgroundTint="@color/black"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
+                android:hint="@string/create_et_sum_hint"
+                style="@style/App.Text.EditText.H6"
+                android:inputType="numberDecimal"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/tv_client"
@@ -59,45 +56,129 @@
                 android:id="@+id/spin_client"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/m1"
+                android:layout_marginHorizontal="@dimen/m2"
                 tools:listitem="@layout/support_simple_spinner_dropdown_item"
-                app:layout_constraintStart_toEndOf="@id/tv_client"
+                app:layout_constraintStart_toEndOf="@id/tv_sum"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                android:id="@+id/tv_enable_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cb_limit"
-                app:layout_constraintBottom_toBottomOf="@id/cb_limit"
-                style="@style/App.Text.H5"
-                android:text="@string/create_tv_enable_limit" />
-
-            <CheckBox
-                android:id="@+id/cb_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:checked="true"
-                android:button="@drawable/ic_launcher_foreground"
-                app:layout_constraintTop_toBottomOf="@id/et_sum"
-                app:layout_constraintStart_toEndOf="@id/tv_enable_limit" />
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/cb_limit"
-                app:layout_constraintTop_toTopOf="@id/cb_limit"
-                app:layout_constraintBottom_toBottomOf="@id/cb_limit"
-                android:visibility="gone"
-                tools:visibility="visible"
-                style="@style/App.Text.H5"
-                tools:text="22.02.2023" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/App.Card.Large"
+        android:layout_marginTop="@dimen/m2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_enable_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/cb_limit"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/App.Text.H5"
+                android:text="@string/create_tv_enable_limit" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_limit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:checked="true"
+                app:layout_constraintDimensionRatio="1"
+                android:button="@drawable/ic_checkbox"
+                app:layout_constraintTop_toTopOf="@id/tv_enable_limit"
+                app:layout_constraintBottom_toBottomOf="@id/tv_enable_limit"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/b_select_date"
+                android:layout_marginTop="@dimen/m5"
+                android:visibility="gone"
+                tools:visibility="visible"
+                style="@style/App.Text.H5"
+                tools:text="22.02.2023" />
+
+            <Button
+                android:id="@+id/b_select_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_enable_limit"
+                android:layout_marginTop="@dimen/m5"
+                style="@style/App.Text.Accent.H5"
+                android:text="@string/create_b_select_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/App.Card.Large"
+        android:layout_marginTop="@dimen/m2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cb_desc"
+                style="@style/App.Text.H6"
+                android:text="@string/create_tv_description" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_desc"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:checked="true"
+                app:layout_constraintDimensionRatio="1"
+                android:button="@drawable/ic_checkbox"
+                app:layout_constraintTop_toTopOf="@id/tv_desc"
+                app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/et_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_desc"
+                android:layout_marginTop="@dimen/m5"
+                style="@style/App.Text.EditText.H6"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:importantForAutofill="no"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/create_et_desc_hint"
+                android:inputType="text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/b_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/App.Text.Accent.H5"
+        android:layout_marginTop="@dimen/m2"
+        android:text="@string/create_b_done" />
+
+</LinearLayout>

@@ -4,9 +4,27 @@
 
     </style>
 
+    <style name="App.Card">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">20dp</item>
+    </style>
+
+    <style name="App.Card.Large">
+        <item name="contentPadding">@dimen/m1</item>
+    </style>
+
     <style name="App.Text">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="App.Text.EditText">
+        <item name="backgroundTint">@color/edit_text_tint_color</item>
+        <item name="android:backgroundTint">@color/edit_text_tint_color</item>
+    </style>
+
+    <style name="App.Text.EditText.H6">
+        <item name="android:textSize">@dimen/font_h6</item>
     </style>
 
     <style name="App.Text.Accent">
@@ -30,6 +48,24 @@
 
     <style name="App.Text.Accent.H5">
         <item name="android:textSize">@dimen/font_h5</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="App.Text.H6">
+        <item name="android:textSize">@dimen/font_h6</item>
+    </style>
+
+    <style name="App.Text.Accent.H6">
+        <item name="android:textSize">@dimen/font_h6</item>
+    </style>
+
+    <style name="App.Text.H10">
+        <item name="android:textSize">@dimen/font_h10</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="App.Text.Accent.H10">
+        <item name="android:textSize">@dimen/font_h10</item>
         <item name="android:textAllCaps">true</item>
     </style>
 </resources>
