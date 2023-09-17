@@ -10,4 +10,5 @@
     <string name="create_tv_description">Description</string>
     <string name="create_et_desc_hint">Type something…</string>
     <string name="create_b_done">Create</string>
+    <string name="cd_add_client">Create</string>
 </resources>

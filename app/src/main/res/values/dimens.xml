@@ -2,6 +2,7 @@
 <resources>
     <dimen name="m1">24dp</dimen>
     <dimen name="m2">12dp</dimen>
+    <dimen name="m4">8dp</dimen>
     <dimen name="m5">4dp</dimen>
 
     <dimen name="font_h1">32sp</dimen>

@@ -1,4 +1,4 @@
-package com.sergstas.debtstracker.domain.usecases
+package com.sergstas.debtstracker.domain.usecases.debts
 
 import com.sergstas.debtstracker.domain.repo.IDebtRepo
 import com.sergstas.debtstracker.domain.models.Debt
