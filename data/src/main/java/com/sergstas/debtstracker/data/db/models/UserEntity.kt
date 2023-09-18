@@ -7,8 +7,8 @@ import com.sergstas.debtstracker.domain.models.User
 @Entity
 data class UserEntity(
     @PrimaryKey val username: String,
-    val firstName: String,
-    val lastName: String,
+    val firstName: String?,
+    val lastName: String?,
     val hasAvatar: Boolean = false,
 ) {
     companion object {
