@@ -3,7 +3,6 @@ package com.sergstas.debtstracker.di
 import android.content.Context
 import androidx.room.Room
 import com.sergstas.debtstracker.data.db.AppDatabase
-import com.sergstas.debtstracker.data.db.callbacks.CreateInitialCurrencyListCallback
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +19,7 @@ class DatabaseModule {
     @Provides
     fun provideDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, AppDatabase::class.java, APP_DB_NAME)
-            .addCallback(CreateInitialCurrencyListCallback)
+            .fallbackToDestructiveMigration()
             .build()
 
     @Provides
@@ -28,7 +27,4 @@ class DatabaseModule {
 
     @Provides
     fun provideUserDao(database: AppDatabase) = database.getUserDao()
-
-    @Provides
-    fun provideCurrencyDao(database: AppDatabase) = database.getCurrencyDao()
 }

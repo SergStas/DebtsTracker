@@ -2,15 +2,14 @@ package com.sergstas.debtstracker.data.db.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sergstas.debtstracker.domain.models.Currency
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
 
 @Entity
 data class DebtEntity(
-    val fromUserId: Long,
-    val toUserId: Long,
-    val currencyId: Long,
+    val fromUser: String,
+    val toUser: String,
+    val currency: String,
     val sum: Double,
     val creationDate: Long,
     val expirationDate: Long,
@@ -18,19 +17,19 @@ data class DebtEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
 ) {
     companion object {
-        fun Debt.toDbEntity(fromUserId: Long, toUserId: Long, currencyId: Long) =
+        fun Debt.toDbEntity() =
             DebtEntity(
-                fromUserId = fromUserId,
-                toUserId = toUserId,
-                currencyId = currencyId,
+                fromUser = from.username,
+                toUser = to.username,
+                currency = currency,
                 sum = sum,
                 creationDate = creationDate,
                 expirationDate = expirationDate,
-                description = description
+                description = description,
             )
     }
 
-    fun toDomain(fromUser: User, toUser: User, currency: Currency) =
+    fun toDomain(fromUser: User, toUser: User) =
         Debt(
             from = fromUser,
             to = toUser,

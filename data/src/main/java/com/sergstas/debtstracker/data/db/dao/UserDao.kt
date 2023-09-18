@@ -7,9 +7,6 @@ import com.sergstas.debtstracker.data.db.models.UserEntity
 
 @Dao
 interface UserDao {
-    @Query("select * from userentity where id = :id")
-    suspend fun getById(id: Long): UserEntity?
-
     @Query("select * from userentity where username = :username")
     suspend fun getByUserName(username: String): UserEntity?
 

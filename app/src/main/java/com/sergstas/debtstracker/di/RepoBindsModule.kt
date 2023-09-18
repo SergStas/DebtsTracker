@@ -1,9 +1,7 @@
 package com.sergstas.debtstracker.di
 
-import com.sergstas.debtstracker.data.repo.CurrencyRepo
 import com.sergstas.debtstracker.data.repo.DebtRepo
 import com.sergstas.debtstracker.data.repo.UserRepo
-import com.sergstas.debtstracker.domain.repo.ICurrencyRepo
 import com.sergstas.debtstracker.domain.repo.IDebtRepo
 import com.sergstas.debtstracker.domain.repo.IUserRepo
 import dagger.Binds
@@ -19,7 +17,4 @@ interface RepoBindsModule {
 
     @Binds
     fun bindUserRepo(userRepo: UserRepo): IUserRepo
-
-    @Binds
-    fun bindCurrencyRepo(currencyRepo: CurrencyRepo): ICurrencyRepo
 }

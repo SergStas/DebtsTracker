@@ -5,9 +5,7 @@ import com.sergstas.debtstracker.domain.models.User
 interface IUserRepo {
     suspend fun getAll(): List<User>
 
-    suspend fun getById(id: Long): User?
-
-    suspend fun getIdByUserName(username: String): Long?
+    suspend fun getByUserName(username: String): User?
 
     suspend fun create(user: User): Boolean
 }

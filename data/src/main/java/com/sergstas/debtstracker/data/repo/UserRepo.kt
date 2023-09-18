@@ -13,11 +13,8 @@ class UserRepo @Inject constructor(
     override suspend fun getAll() =
         userDao.getAll().map(UserEntity::toDomainData)
 
-    override suspend fun getById(id: Long) =
-        userDao.getById(id)?.toDomainData()
-
-    override suspend fun getIdByUserName(username: String) =
-        userDao.getByUserName(username)?.id
+    override suspend fun getByUserName(username: String) =
+        userDao.getByUserName(username)?.toDomainData()
 
     override suspend fun create(user: User): Boolean {
         val existing = userDao.getAll()

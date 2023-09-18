@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 class DebtRepo @Inject constructor(
     private val debtDao: DebtDao,
-    private val currencyRepo: CurrencyRepo,
     private val userRepo: UserRepo,
 ): IDebtRepo {
     private val dispatcher = Dispatchers.IO
@@ -20,21 +19,15 @@ class DebtRepo @Inject constructor(
         withContext(dispatcher) {
             userRepo.create(debt.from)
             userRepo.create(debt.to)
-            currencyRepo.create(debt.currency)
-            val entity = debt.toDbEntity(
-                fromUserId = userRepo.getIdByUserName(debt.from.username) ?: return@withContext,
-                toUserId = userRepo.getIdByUserName(debt.from.username) ?: return@withContext,
-                currencyId = currencyRepo.getIdByCode(debt.currency.code) ?: return@withContext,
-            )
+            val entity = debt.toDbEntity()
             debtDao.insert(entity)
         }
 
     override suspend fun getAll(user: User) =
         withContext(dispatcher) {
             debtDao.getAll().mapNotNull { it.toDomain(
-                fromUser = userRepo.getById(it.fromUserId) ?: return@mapNotNull null,
-                toUser = userRepo.getById(it.toUserId) ?: return@mapNotNull null,
-                currency = currencyRepo.getById(it.currencyId) ?: return@mapNotNull null,
+                fromUser = userRepo.getByUserName(it.fromUser) ?: return@mapNotNull null,
+                toUser = userRepo.getByUserName(it.toUser) ?: return@mapNotNull null,
             ) }
         }
 }
