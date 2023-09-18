@@ -10,6 +10,12 @@
         <item name="cornerRadius">@dimen/rad1</item>
     </style>
 
+    <style name="App.Button.Small" parent="App.Text.Accent.H8">
+        <item name="android:paddingVertical">@dimen/m4</item>
+        <item name="android:paddingHorizontal">@dimen/m3</item>
+        <item name="cornerRadius">@dimen/rad1</item>
+    </style>
+
     <style name="App.Card">
         <item name="cardBackgroundColor">@color/c4</item>
         <item name="cardCornerRadius">@dimen/rad1</item>

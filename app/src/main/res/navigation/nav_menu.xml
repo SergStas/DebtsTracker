@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/menu_createFragment"
-        android:name="com.sergstas.debtstracker.ui.create.CreateFragment"
+        android:name="com.sergstas.debtstracker.ui.create.CreateDebtFragment"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" />
     <fragment

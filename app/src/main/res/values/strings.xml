@@ -6,9 +6,15 @@
     <string name="create_tv_client">Client</string>
     <string name="create_tv_enable_limit">Expiration date</string>
     <string name="create_b_select_date">Select date</string>
+    <string name="create_tv_exp_date_ph">Date not selected</string>
     <string name="create_et_sum_hint">0.00</string>
     <string name="create_tv_description">Description</string>
     <string name="create_et_desc_hint">Type something…</string>
     <string name="create_b_done">Create</string>
     <string name="cd_add_client">Create</string>
+    <string name="create_er_client_null">Please select client</string>
+    <string name="create_er_date_invalid">Expiration date is invalid</string>
+    <string name="create_er_sum_empty">Please specify sum</string>
+    <string name="create_er_sum_zero">Sum can\'t be zero</string>
+    <string name="create_er_sum_negative">Sum must be positive</string>
 </resources>

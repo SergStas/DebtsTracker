@@ -16,7 +16,7 @@ import javax.inject.Inject
 import kotlin.math.abs
 
 @HiltViewModel
-class CreateViewModel @Inject constructor(
+class CreateDebtViewModel @Inject constructor(
     private val createDebt: CreateDebtUC,
     private val getCurrenciesList: GetCurrenciesListUC,
     private val getFriendsList: GetFriendsListUC,

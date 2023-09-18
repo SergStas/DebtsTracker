@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.create.CreateFragment"
+    tools:context=".ui.create.CreateDebtFragment"
     android:orientation="vertical"
     android:padding="@dimen/m1">
 
@@ -22,7 +22,7 @@
                 android:layout_width="@dimen/create_b_add_client_size"
                 android:layout_height="@dimen/create_b_add_client_size"
                 android:src="@drawable/ic_button_add"
-                android:layout_marginVertical="@dimen/m4"
+                android:layout_marginVertical="@dimen/m3"
                 app:layout_constraintTop_toTopOf="@id/spin_client"
                 app:layout_constraintBottom_toBottomOf="@id/spin_client"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/m2"                app:layout_constraintTop_toBottomOf="@id/spin_client"
                 app:layout_constraintEnd_toStartOf="@id/spin_currency"
-                android:layout_marginEnd="@dimen/m4"
+                android:layout_marginEnd="@dimen/m3"
                 app:layout_constraintStart_toEndOf="@id/tv_sum"
                 android:layout_marginStart="@dimen/m2"
                 android:hint="@string/create_et_sum_hint"
@@ -80,64 +80,6 @@
                 app:layout_constraintStart_toEndOf="@id/tv_sum"
                 app:layout_constraintEnd_toStartOf="@id/b_new_client"
                 app:layout_constraintTop_toTopOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/App.Card.Large"
-        android:layout_marginTop="@dimen/m1">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_enable_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/cb_limit"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/App.Text.H5"
-                android:text="@string/create_tv_enable_limit" />
-
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/cb_limit"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                tools:checked="true"
-                app:layout_constraintDimensionRatio="1"
-                android:button="@drawable/ic_checkbox"
-                app:layout_constraintTop_toTopOf="@id/tv_enable_limit"
-                app:layout_constraintBottom_toBottomOf="@id/tv_enable_limit"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/b_select_date"
-                android:layout_marginTop="@dimen/m5"
-                android:visibility="gone"
-                tools:visibility="visible"
-                style="@style/App.Text.H5"
-                tools:text="22.02.2023" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/b_select_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/App.Button"
-                android:visibility="gone"
-                tools:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_enable_limit"
-                android:layout_marginTop="@dimen/m5"
-                android:text="@string/create_b_select_date" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -179,7 +121,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_desc"
-                android:layout_marginTop="@dimen/m5"
+                android:layout_marginTop="@dimen/m4"
                 style="@style/App.Text.EditText.H5"
                 android:visibility="gone"
                 tools:visibility="visible"
@@ -192,6 +134,66 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/App.Card.Large"
+        android:layout_marginTop="@dimen/m1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_enable_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/cb_limit"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/App.Text.H5"
+                android:text="@string/create_tv_enable_limit" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_limit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:checked="true"
+                app:layout_constraintDimensionRatio="1"
+                android:button="@drawable/ic_checkbox"
+                app:layout_constraintTop_toTopOf="@id/tv_enable_limit"
+                app:layout_constraintBottom_toBottomOf="@id/tv_enable_limit"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/b_select_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/b_select_date"
+                app:layout_constraintBottom_toBottomOf="@id/b_select_date"
+                android:layout_marginTop="@dimen/m4"
+                android:visibility="gone"
+                tools:visibility="visible"
+                style="@style/App.Text.H5"
+                android:text="@string/create_tv_exp_date_ph" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_select_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/App.Button.Small"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_enable_limit"
+                android:layout_marginTop="@dimen/m4"
+                android:text="@string/create_b_select_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/b_done"
         android:layout_width="match_parent"
@@ -199,5 +201,14 @@
         style="@style/App.Button"
         android:layout_marginTop="@dimen/m1"
         android:text="@string/create_b_done" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </LinearLayout>
