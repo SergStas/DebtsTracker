@@ -5,8 +5,16 @@
     <dimen name="m4">8dp</dimen>
     <dimen name="m5">4dp</dimen>
 
-    <dimen name="font_h1">32sp</dimen>
-    <dimen name="font_h5">18sp</dimen>
-    <dimen name="font_h6">18sp</dimen>
-    <dimen name="font_h10">12sp</dimen>
+    <dimen name="font_h1">24sp</dimen>
+    <dimen name="font_h2">24sp</dimen>
+    <dimen name="font_h3">16sp</dimen>
+    <dimen name="font_h5">16sp</dimen>
+    <dimen name="font_h6">16sp</dimen>
+    <dimen name="font_h7">12sp</dimen>
+    <dimen name="font_h8">12sp</dimen>
+
+    <dimen name="create_spin_currency_width">120dp</dimen>
+    <dimen name="rad1">24dp</dimen>
+    <dimen name="create_b_add_client_size">24dp</dimen>
+
 </resources>

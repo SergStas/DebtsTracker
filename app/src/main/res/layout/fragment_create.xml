@@ -5,10 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.create.CreateFragment"
-    android:background="@color/app_background"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/m2"
-    android:paddingVertical="@dimen/m1">
+    android:padding="@dimen/m1">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,9 +19,8 @@
 
             <ImageView
                 android:id="@+id/b_new_client"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
+                android:layout_width="@dimen/create_b_add_client_size"
+                android:layout_height="@dimen/create_b_add_client_size"
                 android:src="@drawable/ic_button_add"
                 android:layout_marginVertical="@dimen/m4"
                 app:layout_constraintTop_toTopOf="@id/spin_client"
@@ -33,7 +30,7 @@
 
             <Spinner
                 android:id="@+id/spin_currency"
-                android:layout_width="80dp"
+                android:layout_width="@dimen/create_spin_currency_width"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/et_sum"
                 app:layout_constraintTop_toTopOf="@id/et_sum"
@@ -47,20 +44,20 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_client"
                 app:layout_constraintTop_toTopOf="@id/et_sum"
                 app:layout_constraintBottom_toBottomOf="@id/et_sum"
-                style="@style/App.Text.H6"
+                style="@style/App.Text.H5"
                 android:text="@string/create_tv_sum" />
 
             <EditText
                 android:id="@+id/et_sum"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/spin_client"
+                android:layout_marginTop="@dimen/m2"                app:layout_constraintTop_toBottomOf="@id/spin_client"
                 app:layout_constraintEnd_toStartOf="@id/spin_currency"
                 android:layout_marginEnd="@dimen/m4"
                 app:layout_constraintStart_toEndOf="@id/tv_sum"
                 android:layout_marginStart="@dimen/m2"
                 android:hint="@string/create_et_sum_hint"
-                style="@style/App.Text.EditText.H6"
+                style="@style/App.Text.EditText.H5"
                 android:inputType="numberDecimal"
                 android:importantForAutofill="no" />
 
@@ -71,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/spin_client"
                 app:layout_constraintBottom_toBottomOf="@id/spin_client"
-                style="@style/App.Text.H6"
+                style="@style/App.Text.H5"
                 android:text="@string/create_tv_client" />
 
             <Spinner
@@ -92,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/App.Card.Large"
-        android:layout_marginTop="@dimen/m2">
+        android:layout_marginTop="@dimen/m1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -104,7 +101,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/cb_limit"
                 app:layout_constraintTop_toTopOf="parent"
-                style="@style/App.Text.H6"
+                style="@style/App.Text.H5"
                 android:text="@string/create_tv_enable_limit" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
@@ -130,16 +127,16 @@
                 style="@style/App.Text.H5"
                 tools:text="22.02.2023" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/b_select_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/App.Button"
                 android:visibility="gone"
                 tools:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_enable_limit"
                 android:layout_marginTop="@dimen/m5"
-                style="@style/App.Text.Accent.H5"
                 android:text="@string/create_b_select_date" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -150,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/App.Card.Large"
-        android:layout_marginTop="@dimen/m2">
+        android:layout_marginTop="@dimen/m1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -162,7 +159,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cb_desc"
-                style="@style/App.Text.H6"
+                style="@style/App.Text.H5"
                 android:text="@string/create_tv_description" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
@@ -183,7 +180,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_desc"
                 android:layout_marginTop="@dimen/m5"
-                style="@style/App.Text.EditText.H6"
+                style="@style/App.Text.EditText.H5"
                 android:visibility="gone"
                 tools:visibility="visible"
                 android:importantForAutofill="no"
@@ -195,12 +192,12 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/b_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/App.Text.Accent.H5"
-        android:layout_marginTop="@dimen/m2"
+        style="@style/App.Button"
+        android:layout_marginTop="@dimen/m1"
         android:text="@string/create_b_done" />
 
 </LinearLayout>
