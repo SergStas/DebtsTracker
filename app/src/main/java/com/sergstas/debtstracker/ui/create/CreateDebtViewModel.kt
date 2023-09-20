@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
-import com.sergstas.debtstracker.domain.usecases.GetCurrenciesListUC
-import com.sergstas.debtstracker.domain.usecases.debts.CreateDebtUC
-import com.sergstas.debtstracker.domain.usecases.users.GetAuthedUserUC
-import com.sergstas.debtstracker.domain.usecases.users.GetFriendsListUC
+import com.sergstas.debtstracker.domain.usecases.currencies.GetCurrenciesListUseCase
+import com.sergstas.debtstracker.domain.usecases.debts.CreateDebtUseCase
+import com.sergstas.debtstracker.domain.usecases.auth.GetAuthedUserUseCase
+import com.sergstas.debtstracker.domain.usecases.users.GetFriendsListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -17,10 +17,10 @@ import kotlin.math.abs
 
 @HiltViewModel
 class CreateDebtViewModel @Inject constructor(
-    private val createDebt: CreateDebtUC,
-    private val getCurrenciesList: GetCurrenciesListUC,
-    private val getFriendsList: GetFriendsListUC,
-    private val getAuthedUser: GetAuthedUserUC,
+    private val createDebt: CreateDebtUseCase,
+    private val getCurrenciesList: GetCurrenciesListUseCase,
+    private val getFriendsList: GetFriendsListUseCase,
+    private val getAuthedUser: GetAuthedUserUseCase,
 ): ViewModel() {
     val state get() = _state.asSharedFlow()
     private val _state = MutableSharedFlow<State>()
@@ -76,7 +76,7 @@ class CreateDebtViewModel @Inject constructor(
             }
             if (result is State.Success) {
                 val debt = Debt(
-                    from = getAuthedUser(),
+                    from = getAuthedUser()!!,
                     to = friendsList.first { it.username == selectedClientUserName!! },
                     direction = if (isIncoming) Debt.Direction.INCOMING else Debt.Direction.OUTGOING,
                     currency = currency,

@@ -18,6 +18,25 @@
     <string name="create_er_sum_zero">Sum can\'t be zero</string>
     <string name="create_er_sum_negative">Sum must be positive</string>
     <string name="create_date_format_ph">%d%2.%d%2.%d%4</string>
+    <string name="auth_tv_username">Username</string>
+    <string name="auth_tv_password">Password</string>
+    <string name="auth_tv_to_registration">Don\'t have an account? Register</string>
+    <string name="auth_tv_to_registration_link">Register</string>
+    <string name="auth_tv_to_login">Already have an account? Login</string>
+    <string name="auth_tv_to_login_link">Login</string>
+    <string name="auth_tv_password_repeat">Repeat password</string>
+    <string name="auth_b_submit_login">Login</string>
+    <string name="auth_b_submit_register">Register</string>
+    <string name="auth_tv_title_register">Registration</string>
+    <string name="auth_tv_title_login">Login</string>
+    <string name="auth_er_username_is_empty">Username can\'t be empty</string>
+    <string name="auth_er_username_too_short">Username length must be at least %d characters</string>
+    <string name="auth_er_username_is_allocated">Username is already taken</string>
+    <string name="auth_er_password_is_empty">Password can\'t be empty</string>
+    <string name="auth_er_password_too_short">Password length must be at least %n characters</string>
+    <string name="auth_er_password_not_match">Passwords doesn\'t match</string>
+    <string name="auth_er_invalid_credentials">Invalid credentials</string>
+    <string name="auth_er_unknown">Authentication failed due to unknown error</string>
 
     <string-array name="create_debt_types">
         <item>RECEIVE MONEY FROM…</item>

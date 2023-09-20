@@ -16,5 +16,6 @@
     <dimen name="create_spin_currency_width">120dp</dimen>
     <dimen name="rad1">24dp</dimen>
     <dimen name="create_b_add_client_size">24dp</dimen>
+    <dimen name="auth_card_width">300dp</dimen>
 
 </resources>

@@ -15,7 +15,7 @@ import com.sergstas.debtstracker.R
 import com.sergstas.debtstracker.databinding.FragmentCreateBinding
 import com.sergstas.debtstracker.domain.models.User
 import com.sergstas.debtstracker.ui.dialogs.DatePickerFragment
-import com.sergstas.debtstracker.util.toast
+import com.sergstas.debtstracker.util.extensions.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -39,7 +39,7 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
         super.onViewCreated(view, savedInstanceState)
         setAdapters()
         setView()
-        collectVmFlow()
+        observeState()
         loadSpinnerContents()
     }
 
@@ -48,7 +48,7 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
         viewModel.loadFriendsList()
     }
 
-    private fun collectVmFlow() {
+    private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 when (it) {

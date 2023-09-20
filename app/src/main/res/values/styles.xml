@@ -37,6 +37,10 @@
         <item name="android:backgroundTint">@color/edit_text_tint_color</item>
     </style>
 
+    <style name="App.Text.EditText.H2">
+        <item name="android:textSize">@dimen/font_h2</item>
+    </style>
+
     <style name="App.Text.EditText.H5">
         <item name="android:textSize">@dimen/font_h6</item>
     </style>
@@ -53,7 +57,16 @@
 
     <style name="App.Text.Accent.H1">
         <item name="android:textSize">@dimen/font_h1</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="App.Text.H2">
+        <item name="android:textSize">@dimen/font_h2</item>
+    </style>
+
+    <style name="App.Text.Accent.H2">
+        <item name="android:textSize">@dimen/font_h2</item>
     </style>
 
     <style name="App.Text.H5">

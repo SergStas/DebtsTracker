@@ -4,7 +4,7 @@ import com.sergstas.debtstracker.domain.repo.IDebtRepo
 import com.sergstas.debtstracker.domain.models.Debt
 import javax.inject.Inject
 
-class CreateDebtUC @Inject constructor(
+class CreateDebtUseCase @Inject constructor(
     private val repo: IDebtRepo,
 ) {
     suspend operator fun invoke(debt: Debt) {
