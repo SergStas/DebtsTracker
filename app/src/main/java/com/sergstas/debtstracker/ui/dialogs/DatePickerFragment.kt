@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import java.time.LocalDate
+import java.time.ZoneOffset
 import java.util.*
 
 class DatePickerFragment(
@@ -19,7 +21,11 @@ class DatePickerFragment(
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        onSelected(System.currentTimeMillis() + 1e6.toInt())
+        val date = LocalDate
+            .of(year, month, day)
+            .atTime(23, 59, 59)
+            .toEpochSecond(ZoneOffset.UTC)
+        onSelected(date)
         dismiss()
     }
 }

@@ -3,6 +3,7 @@ package com.sergstas.debtstracker.ui.create
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -17,6 +18,8 @@ import com.sergstas.debtstracker.ui.dialogs.DatePickerFragment
 import com.sergstas.debtstracker.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 @AndroidEntryPoint
 class CreateDebtFragment: Fragment(R.layout.fragment_create) {
@@ -30,6 +33,7 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
     private var expirationDate: Long? = null
     private var currency: String? = null
     private var recipient: String? = null
+    private var isIncoming = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,13 +87,13 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
             requireContext(),
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
         )
-        binding.spinCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinCurrency.onItemSelectedListener = object: OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 currency = parent?.getItemAtPosition(position) as? String
             }
         }
-        binding.spinClient.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinClient.onItemSelectedListener = object: OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 recipient = parent?.getItemAtPosition(position) as? String
@@ -97,6 +101,19 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
         }
         binding.spinClient.adapter = userAdapter
         binding.spinCurrency.adapter = currencyAdapter
+        binding.spinType.run {
+            adapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.create_debt_types,
+                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            )
+            onItemSelectedListener = object: OnItemSelectedListener {
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                    isIncoming = position == 0
+                }
+            }
+        }
     }
 
     private fun setView() {
@@ -114,7 +131,7 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
                     sum = etSum.text.toString(),
                     selectedClientUserName = recipient,
                     expirationDate = expirationDate,
-                    isIncoming = true,
+                    isIncoming = isIncoming,
                     currency = currency ?: return@setOnClickListener,
                     description = etDesc.text.toString().takeIf { it.isNotEmpty() },
                 )
@@ -157,7 +174,9 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
     private fun chooseDate() {
         val newFragment = DatePickerFragment {
             expirationDate = it
-            binding.tvDate.text = it.toString()
+            val date = LocalDateTime.ofEpochSecond(it, 0, ZoneOffset.UTC)
+            binding.tvDate.text = getString(R.string.create_date_format_ph)
+                .format(date.dayOfMonth, date.month.value.inc(), date.year)
             binding.bDone.isEnabled = true
         }
         newFragment.show(childFragmentManager, "datePicker")

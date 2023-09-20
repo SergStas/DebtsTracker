@@ -17,4 +17,10 @@
     <string name="create_er_sum_empty">Please specify sum</string>
     <string name="create_er_sum_zero">Sum can\'t be zero</string>
     <string name="create_er_sum_negative">Sum must be positive</string>
+    <string name="create_date_format_ph">%d%2.%d%2.%d%4</string>
+
+    <string-array name="create_debt_types">
+        <item>RECEIVE MONEY FROM…</item>
+        <item>RETURN MONEY TO…</item>
+    </string-array>
 </resources>
