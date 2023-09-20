@@ -29,11 +29,11 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
     private fun toCreationPage() =
         findNavController().navigate(
-            resId = R.id.action_menu_homeFragment_to_menu_createFragment,
+            resId = R.id.action_homeFragment_to_home_createDebtFragment,
         )
 
     private fun toHistoryPage() =
         findNavController().navigate(
-            resId = R.id.action_menu_homeFragment_to_menu_historyFragment,
+            resId = R.id.action_homeFragment_to_home_historyFragment,
         )
 }

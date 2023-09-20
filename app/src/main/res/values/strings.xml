@@ -37,6 +37,9 @@
     <string name="auth_er_password_not_match">Passwords doesn\'t match</string>
     <string name="auth_er_invalid_credentials">Invalid credentials</string>
     <string name="auth_er_unknown">Authentication failed due to unknown error</string>
+    <string name="menu_nav_main_home">Home</string>
+    <string name="menu_nav_main_friends">Friends list</string>
+    <string name="menu_nav_main_settings">Settings</string>
 
     <string-array name="create_debt_types">
         <item>RECEIVE MONEY FROM…</item>

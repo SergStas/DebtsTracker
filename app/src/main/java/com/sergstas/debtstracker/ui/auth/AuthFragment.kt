@@ -125,5 +125,5 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
         viewModel.switchMode()
 
     private fun navigateToMenu() =
-        findNavController().navigate(R.id.action_authFragment_to_nav_menu)
+        findNavController().navigate(R.id.action_authFragment_to_nav_main)
 }
