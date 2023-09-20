@@ -23,36 +23,36 @@ class CreateDebtViewModel @Inject constructor(
     private val getAuthedUser: GetAuthedUserUseCase,
 ): ViewModel() {
     val state get() = _state.asSharedFlow()
-    private val _state = MutableSharedFlow<State>()
+    private val _state = MutableSharedFlow<Event>()
 
     private var friendsList = listOf<User>()
 
     fun loadFriendsList() {
         viewModelScope.launch {
-            _state.emit(State.Loading(true))
+            _state.emit(Event.Loading(true))
             friendsList = getFriendsList()
-            _state.emit(State.FriendsListLoaded(friendsList))
-            _state.emit(State.Loading(false))
+            _state.emit(Event.FriendsListLoaded(friendsList))
+            _state.emit(Event.Loading(false))
         }
     }
 
     fun loadCurrencies() {
         viewModelScope.launch {
-            _state.emit(State.Loading(true))
-            _state.emit(State.CurrenciesListLoaded(getCurrenciesList()))
-            _state.emit(State.Loading(false))
+            _state.emit(Event.Loading(true))
+            _state.emit(Event.CurrenciesListLoaded(getCurrenciesList()))
+            _state.emit(Event.Loading(false))
         }
     }
 
     fun onCheckExpiration(value: Boolean) {
         viewModelScope.launch {
-            _state.emit(State.ExpirationEnabled(value))
+            _state.emit(Event.ExpirationEnabled(value))
         }
     }
 
     fun onCheckDescription(value: Boolean) {
         viewModelScope.launch {
-            _state.emit(State.DescriptionEnabled(value))
+            _state.emit(Event.DescriptionEnabled(value))
         }
     }
 
@@ -65,16 +65,16 @@ class CreateDebtViewModel @Inject constructor(
         description: String?,
     ) {
         viewModelScope.launch {
-            _state.emit(State.Loading(true))
+            _state.emit(Event.Loading(true))
             val result = when {
-                sum.isEmpty() -> State.Error.SumIsEmpty
-                abs(sum.toDouble()) < 1e-5 -> State.Error.SumIsZero
-                sum.toDouble() < 0 -> State.Error.SumIsNegative
-                selectedClientUserName == null -> State.Error.ClientIsNull
-                expirationDate?.let { it < System.currentTimeMillis() } ?: false -> State.Error.ExpirationDateInvalid
-                else -> State.Success
+                sum.isEmpty() -> Event.Error.SumIsEmpty
+                abs(sum.toDouble()) < 1e-5 -> Event.Error.SumIsZero
+                sum.toDouble() < 0 -> Event.Error.SumIsNegative
+                selectedClientUserName == null -> Event.Error.ClientIsNull
+                expirationDate?.let { it < System.currentTimeMillis() } ?: false -> Event.Error.ExpirationDateInvalid
+                else -> Event.Success
             }
-            if (result is State.Success) {
+            if (result is Event.Success) {
                 val debt = Debt(
                     from = getAuthedUser()!!,
                     to = friendsList.first { it.username == selectedClientUserName!! },
@@ -88,23 +88,23 @@ class CreateDebtViewModel @Inject constructor(
                 createDebt(debt)
             }
             _state.emit(result)
-            _state.emit(State.Loading(false))
+            _state.emit(Event.Loading(false))
         }
     }
 
-    sealed interface State {
-        data class Loading(val value: Boolean): State
-        data class FriendsListLoaded(val users: List<User>): State
-        data class CurrenciesListLoaded(val currencies: List<String>): State
-        data class ExpirationEnabled(val value: Boolean): State
-        data class DescriptionEnabled(val value: Boolean): State
-        sealed interface Error: State {
+    sealed interface Event {
+        data class Loading(val value: Boolean): Event
+        data class FriendsListLoaded(val users: List<User>): Event
+        data class CurrenciesListLoaded(val currencies: List<String>): Event
+        data class ExpirationEnabled(val value: Boolean): Event
+        data class DescriptionEnabled(val value: Boolean): Event
+        sealed interface Error: Event {
             object SumIsEmpty: Error
             object SumIsNegative: Error
             object SumIsZero: Error
             object ClientIsNull: Error
             object ExpirationDateInvalid: Error
         }
-        object Success: State
+        object Success: Event
     }
 }

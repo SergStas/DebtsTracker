@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DebtsTracker</string>
-    <string name="menu_b_create">Create</string>
-    <string name="menu_b_history">History</string>
+    <string name="menu_b_create">New record</string>
+    <string name="menu_b_history">Show all records</string>
     <string name="create_tv_sum">Sum</string>
     <string name="create_tv_client">Client</string>
     <string name="create_tv_enable_limit">Expiration date</string>
@@ -40,6 +40,16 @@
     <string name="menu_nav_main_home">Home</string>
     <string name="menu_nav_main_friends">Friends list</string>
     <string name="menu_nav_main_settings">Settings</string>
+
+    <plurals name="home_tv_debts">
+        <item quantity="one">%s debt</item>
+        <item quantity="other">%s debts</item>
+    </plurals>
+
+    <plurals name="home_tv_debtors">
+        <item quantity="one">%s debtor</item>
+        <item quantity="other">%s debtors</item>
+    </plurals>
 
     <string-array name="create_debt_types">
         <item>RECEIVE MONEY FROM…</item>

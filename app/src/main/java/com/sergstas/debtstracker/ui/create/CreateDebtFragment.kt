@@ -52,13 +52,13 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 when (it) {
-                    is CreateDebtViewModel.State.CurrenciesListLoaded -> submitCurrencyList(it.currencies)
-                    is CreateDebtViewModel.State.DescriptionEnabled -> switchDescriptionFieldVisibility(it.value)
-                    is CreateDebtViewModel.State.ExpirationEnabled -> switchExpirationDateFieldVisibility(it.value)
-                    is CreateDebtViewModel.State.Error -> displayError(it)
-                    is CreateDebtViewModel.State.FriendsListLoaded -> submitUserList(it.users)
-                    is CreateDebtViewModel.State.Loading -> displayLoading(it.value)
-                    CreateDebtViewModel.State.Success -> navigateBack()
+                    is CreateDebtViewModel.Event.CurrenciesListLoaded -> submitCurrencyList(it.currencies)
+                    is CreateDebtViewModel.Event.DescriptionEnabled -> switchDescriptionFieldVisibility(it.value)
+                    is CreateDebtViewModel.Event.ExpirationEnabled -> switchExpirationDateFieldVisibility(it.value)
+                    is CreateDebtViewModel.Event.Error -> displayError(it)
+                    is CreateDebtViewModel.Event.FriendsListLoaded -> submitUserList(it.users)
+                    is CreateDebtViewModel.Event.Loading -> displayLoading(it.value)
+                    CreateDebtViewModel.Event.Success -> navigateBack()
                 }
             }
         }
@@ -154,17 +154,17 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
         binding.etDesc.isVisible = value
     }
 
-    private fun displayError(error: CreateDebtViewModel.State.Error) {
+    private fun displayError(error: CreateDebtViewModel.Event.Error) {
         binding.etSum.error = null
         val message = getString(when (error) {
-            CreateDebtViewModel.State.Error.ClientIsNull -> R.string.create_er_client_null
-            CreateDebtViewModel.State.Error.ExpirationDateInvalid -> R.string.create_er_date_invalid
-            CreateDebtViewModel.State.Error.SumIsEmpty -> R.string.create_er_sum_empty
-            CreateDebtViewModel.State.Error.SumIsNegative -> R.string.create_er_sum_negative
-            CreateDebtViewModel.State.Error.SumIsZero -> R.string.create_er_sum_zero
+            CreateDebtViewModel.Event.Error.ClientIsNull -> R.string.create_er_client_null
+            CreateDebtViewModel.Event.Error.ExpirationDateInvalid -> R.string.create_er_date_invalid
+            CreateDebtViewModel.Event.Error.SumIsEmpty -> R.string.create_er_sum_empty
+            CreateDebtViewModel.Event.Error.SumIsNegative -> R.string.create_er_sum_negative
+            CreateDebtViewModel.Event.Error.SumIsZero -> R.string.create_er_sum_zero
         } )
-        if (error is CreateDebtViewModel.State.Error.ClientIsNull
-            || error is CreateDebtViewModel.State.Error.ExpirationDateInvalid) {
+        if (error is CreateDebtViewModel.Event.Error.ClientIsNull
+            || error is CreateDebtViewModel.Event.Error.ExpirationDateInvalid) {
             toast(message)
         } else {
             binding.etSum.error = message

@@ -20,6 +20,7 @@
         android:id="@+id/bnv_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_nav_main"
         android:background="@color/c4" />
