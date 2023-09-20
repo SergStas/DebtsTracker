@@ -47,24 +47,9 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
                 displayError(it)
             }
         }
-    }
-
-    private fun displayError(error: AuthViewModel.Error?) {
-        binding.run {
-            etUsername.error = (error as? AuthViewModel.Error.Username)?.let {
-                getString(it.msgId).run {
-                    if (error == AuthViewModel.Error.Username.TooShort) format(USERNAME_MIN_LENGTH)
-                    else this
-                }
-            }
-            etPassword.error = (error as? AuthViewModel.Error.Password)?.let {
-                getString(it.msgId).run {
-                    if (error == AuthViewModel.Error.Password.TooShort) format(PASSWORD_MIN_LENGTH)
-                    else this
-                }
-            }
-            if (error != null && error !is AuthViewModel.Error.Password && error !is AuthViewModel.Error.Username) {
-                toast(getString(error.msgId))
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.loading.collect {
+                displayLoading(it)
             }
         }
     }
@@ -107,6 +92,30 @@ class AuthFragment: Fragment(R.layout.fragment_auth) {
                 context = requireContext(),
             )
         }
+    }
+
+    private fun displayError(error: AuthViewModel.Error?) {
+        binding.run {
+            etUsername.error = (error as? AuthViewModel.Error.Username)?.let {
+                getString(it.msgId).run {
+                    if (error == AuthViewModel.Error.Username.TooShort) format(USERNAME_MIN_LENGTH)
+                    else this
+                }
+            }
+            etPassword.error = (error as? AuthViewModel.Error.Password)?.let {
+                getString(it.msgId).run {
+                    if (error == AuthViewModel.Error.Password.TooShort) format(PASSWORD_MIN_LENGTH)
+                    else this
+                }
+            }
+            if (error != null && error !is AuthViewModel.Error.Password && error !is AuthViewModel.Error.Username) {
+                toast(getString(error.msgId))
+            }
+        }
+    }
+
+    private fun displayLoading(value: Boolean) {
+        binding.pbLoading.isVisible = value
     }
 
     private fun checkAuth() =

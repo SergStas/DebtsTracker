@@ -26,6 +26,9 @@ class AuthViewModel @Inject constructor(
     val authorized get() = _authorized.asStateFlow()
     private val _authorized = MutableStateFlow(false)
 
+    val loading get() = _loading.asStateFlow()
+    private val _loading = MutableStateFlow(false)
+
     val error get() = _error.asStateFlow()
     private val _error = MutableStateFlow<Error?>(null)
 
@@ -43,6 +46,7 @@ class AuthViewModel @Inject constructor(
 
     fun validate(username: String?, password: String?, passwordRepeat: String?) {
         viewModelScope.launch {
+            _loading.value = true
             val validationError = when {
                 username == null -> Error.Username.IsEmpty
                 password == null -> Error.Password.IsEmpty
@@ -69,6 +73,7 @@ class AuthViewModel @Inject constructor(
             } else {
                 _error.value = validationError
             }
+            _loading.value = false
         }
     }
 
