@@ -86,6 +86,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/App.Card.Large"
@@ -135,6 +136,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/App.Card.Large"

@@ -101,10 +101,12 @@ class CreateDebtFragment: Fragment(R.layout.fragment_create) {
 
     private fun setView() {
         binding.run {
-            cbDesc.setOnClickListener {
+            cardDesc.setOnClickListener {
+                cbDesc.isChecked = !cbDesc.isChecked
                 viewModel.onCheckDescription(cbDesc.isChecked)
             }
-            cbLimit.setOnClickListener {
+            cardDate.setOnClickListener {
+                cbLimit.isChecked = !cbLimit.isChecked
                 viewModel.onCheckExpiration(cbLimit.isChecked)
             }
             bDone.setOnClickListener {
