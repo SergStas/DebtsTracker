@@ -37,7 +37,21 @@
             tools:text="18.06.2023"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date_created"
-            android:layout_marginTop="@dimen/m2"/>
+            android:layout_marginTop="@dimen/m3"/>
+
+        <ImageView
+            android:id="@+id/iv_marker_warn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_date_until"
+            app:layout_constraintTop_toTopOf="@id/tv_date_until"
+            app:layout_constraintBottom_toBottomOf="@id/tv_date_until"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:paddingVertical="@dimen/m5"
+            android:src="@drawable/ic_warning"
+            android:contentDescription="@null"
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/tv_overdue"
@@ -48,7 +62,77 @@
             tools:text="Overdue!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date_until"
-            android:layout_marginTop="@dimen/m2"/>
+            android:layout_marginTop="@dimen/m3"/>
+        
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user_avatar_ph"
+            app:layout_constraintTop_toBottomOf="@id/tv_type"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/m2"
+            android:contentDescription="@null"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/tv_sum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintEnd_toStartOf="@id/tv_status"
+            app:layout_constraintTop_toTopOf="@id/iv_avatar"
+            android:layout_marginStart="@dimen/m2"
+            android:layout_marginEnd="@dimen/m2"
+            android:ellipsize="end"
+            android:lines="1"
+            style="@style/App.Text.H3"
+            tools:textColor="@color/c6"
+            tools:text="2700 rub" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintEnd_toStartOf="@id/tv_status"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            android:layout_marginStart="@dimen/m2"
+            android:layout_marginEnd="@dimen/m2"
+            android:ellipsize="end"
+            android:lines="1"
+            style="@style/App.Text.H3"
+            tools:text="\@avbelovolov" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            style="@style/App.Text.H6"
+            tools:text="Accepted" />
+
+        <TextView
+            android:id="@+id/tv_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/App.Text.H6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+            android:layout_marginTop="@dimen/m2"
+            tools:text="Description" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_label"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/m3"
+            style="@style/App.Text.H8"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor consequat efficitur. Mauris et purus quis arcu suscipit dictum. Sed semper turpis sit amet nunc dapibus dictum. Aliquam eu mauris eu turpis faucibus gravida non eget massa. Phasellus eleifend, augue non pretium tincidunt, turpis ex aliquam nisl, eget posuere ex sapien ac arcu. Aenean suscipit tellus augue, sit amet congue magna mattis sit amet. Nam rutrum id turpis id dictum. Sed sem metus, interdum commodo elit et, lacinia pretium ex. Nunc sagittis nunc vel erat ultrices malesuada. Aliquam posuere rhoncus dui imperdiet eleifend. Morbi rhoncus arcu eget sagittis ullamcorper."
+            android:maxLines="8" />
         
     </androidx.constraintlayout.widget.ConstraintLayout>
 

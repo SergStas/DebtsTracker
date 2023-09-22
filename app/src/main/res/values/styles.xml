@@ -70,6 +70,16 @@
         <item name="android:textSize">@dimen/font_h2</item>
     </style>
 
+    <style name="App.Text.H3">
+        <item name="android:textSize">@dimen/font_h3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="App.Text.Accent.H3">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_h3</item>
+    </style>
+
     <style name="App.Text.H5">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/font_h5</item>
