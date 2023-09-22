@@ -4,17 +4,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.history.HistoryFragment"
-    android:background="#ff8">
+    tools:context=".ui.history.HistoryFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_filters"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/menu_b_history"
-        style="@style/App.Text.H1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_history_filter"
+        tools:itemCount="2"
+        android:layout_marginTop="@dimen/m2"
+        android:layout_marginHorizontal="@dimen/m1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/c4"
+        tools:listitem="@layout/item_user_preview"
+        tools:itemCount="1"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/rv_filters"
+        android:layout_marginTop="@dimen/m2"
+        android:paddingBottom="@dimen/m2"
+        android:paddingHorizontal="@dimen/m2" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

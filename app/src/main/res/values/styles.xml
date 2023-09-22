@@ -30,6 +30,7 @@
 
     <style name="App.Text">
         <item name="android:textColor">@color/c2</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="App.Text.EditText">
@@ -99,11 +100,9 @@
 
     <style name="App.Text.H8">
         <item name="android:textSize">@dimen/font_h8</item>
-        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="App.Text.Accent.H8">
         <item name="android:textSize">@dimen/font_h8</item>
-        <item name="android:textAllCaps">true</item>
     </style>
 </resources>
