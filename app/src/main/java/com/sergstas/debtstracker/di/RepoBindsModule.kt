@@ -2,10 +2,10 @@ package com.sergstas.debtstracker.di
 
 import com.sergstas.debtstracker.data.repo.AuthRepo
 import com.sergstas.debtstracker.data.repo.DebtRepo
-import com.sergstas.debtstracker.data.repo.UserRepo
+import com.sergstas.debtstracker.data.repo.FriendsRepo
 import com.sergstas.debtstracker.domain.repo.IAuthRepo
 import com.sergstas.debtstracker.domain.repo.IDebtRepo
-import com.sergstas.debtstracker.domain.repo.IUserRepo
+import com.sergstas.debtstracker.domain.repo.IFriendsRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,5 +21,5 @@ interface RepoBindsModule {
     fun bindDebtRepo(debtRepo: DebtRepo): IDebtRepo
 
     @Binds
-    fun bindUserRepo(userRepo: UserRepo): IUserRepo
+    fun bindUserRepo(userRepo: FriendsRepo): IFriendsRepo
 }

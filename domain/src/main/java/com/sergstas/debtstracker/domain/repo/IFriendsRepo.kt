@@ -2,7 +2,7 @@ package com.sergstas.debtstracker.domain.repo
 
 import com.sergstas.debtstracker.domain.models.User
 
-interface IUserRepo {
+interface IFriendsRepo {
     suspend fun getAll(): List<User>
 
     suspend fun getByUserName(username: String): User?

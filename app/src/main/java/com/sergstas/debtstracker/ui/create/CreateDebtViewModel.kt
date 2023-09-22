@@ -76,7 +76,7 @@ class CreateDebtViewModel @Inject constructor(
             }
             if (result is Event.Success) {
                 val debt = Debt(
-                    from = getAuthedUser()!!,
+                    owner = getAuthedUser()!!,
                     to = friendsList.first { it.username == selectedClientUserName!! },
                     direction = if (isIncoming) Debt.Direction.INCOMING else Debt.Direction.OUTGOING,
                     currency = currency,
@@ -84,6 +84,7 @@ class CreateDebtViewModel @Inject constructor(
                     creationDate = System.currentTimeMillis(),
                     expirationDate = expirationDate,
                     description = description,
+                    status = Debt.Status.ASSIGNED,
                 )
                 createDebt(debt)
             }

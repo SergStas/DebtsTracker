@@ -20,7 +20,7 @@ data class DebtEntity(
     companion object {
         fun Debt.toDbEntity() =
             DebtEntity(
-                fromUser = from.username,
+                fromUser = owner.username,
                 toUser = to.username,
                 direction = direction.name,
                 currency = currency,
@@ -33,7 +33,7 @@ data class DebtEntity(
 
     fun toDomain(fromUser: User, toUser: User) =
         Debt(
-            from = fromUser,
+            owner = fromUser,
             to = toUser,
             direction = Debt.Direction.valueOf(direction),
             currency = currency,

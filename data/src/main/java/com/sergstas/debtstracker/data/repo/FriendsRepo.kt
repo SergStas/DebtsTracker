@@ -4,12 +4,12 @@ import com.sergstas.debtstracker.data.db.dao.UserDao
 import com.sergstas.debtstracker.data.db.models.UserEntity
 import com.sergstas.debtstracker.data.db.models.UserEntity.Companion.toDbEntity
 import com.sergstas.debtstracker.domain.models.User
-import com.sergstas.debtstracker.domain.repo.IUserRepo
+import com.sergstas.debtstracker.domain.repo.IFriendsRepo
 import javax.inject.Inject
 
-class UserRepo @Inject constructor(
+class FriendsRepo @Inject constructor(
     private val userDao: UserDao,
-): IUserRepo {
+): IFriendsRepo {
     override suspend fun getAll() =
         userDao.getAll().map(UserEntity::toDomainData)
 
