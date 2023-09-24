@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetAllDebtsUseCase @Inject constructor(
     private val debtRepo: IDebtRepo,
 ) {
-    suspend operator fun invoke(owner: User, args: FilterArgs) =
+    suspend operator fun invoke(owner: User, args: FilterArgs? = null) =
         debtRepo.getAll(owner, args)
 
     data class FilterArgs(
@@ -15,7 +15,7 @@ class GetAllDebtsUseCase @Inject constructor(
         val types: List<DebtTag>? = null
     ) {
         enum class DebtTag {
-            Active, Accepted, ToPay, ToReceive, PendingConfirm, Declined;
+            All, Active, Accepted, ToPay, ToReceive, PendingConfirm, Declined;
         }
     }
 }

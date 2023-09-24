@@ -9,9 +9,9 @@ import com.sergstas.debtstracker.domain.models.User
 data class DebtEntity(
     val fromUser: String,
     val toUser: String,
-    val direction: String,
     val currency: String,
     val sum: Double,
+    val status: String,
     val creationDate: Long,
     val expirationDate: Long?,
     val description: String?,
@@ -20,11 +20,11 @@ data class DebtEntity(
     companion object {
         fun Debt.toDbEntity() =
             DebtEntity(
-                fromUser = owner.username,
-                toUser = to.username,
-                direction = direction.name,
+                fromUser = lender.username,
+                toUser = borrower.username,
                 currency = currency,
                 sum = sum,
+                status = status.name,
                 creationDate = creationDate,
                 expirationDate = expirationDate,
                 description = description,
@@ -33,10 +33,10 @@ data class DebtEntity(
 
     fun toDomain(fromUser: User, toUser: User) =
         Debt(
-            owner = fromUser,
-            to = toUser,
-            direction = Debt.Direction.valueOf(direction),
+            lender = fromUser,
+            borrower = toUser,
             currency = currency,
+            status = Debt.Status.valueOf(status),
             sum = sum,
             creationDate = creationDate,
             expirationDate = expirationDate,

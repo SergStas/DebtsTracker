@@ -74,11 +74,11 @@ class CreateDebtViewModel @Inject constructor(
                 expirationDate?.let { it < System.currentTimeMillis() } ?: false -> Event.Error.ExpirationDateInvalid
                 else -> Event.Success
             }
+            val friend = friendsList.first { it.username == selectedClientUserName!! }
             if (result is Event.Success) {
                 val debt = Debt(
-                    owner = getAuthedUser()!!,
-                    to = friendsList.first { it.username == selectedClientUserName!! },
-                    direction = if (isIncoming) Debt.Direction.INCOMING else Debt.Direction.OUTGOING,
+                    lender = if (isIncoming) getAuthedUser()!! else friend,
+                    borrower = if (isIncoming) friend else getAuthedUser()!!,
                     currency = currency,
                     sum = sum.toDouble(),
                     creationDate = System.currentTimeMillis(),
