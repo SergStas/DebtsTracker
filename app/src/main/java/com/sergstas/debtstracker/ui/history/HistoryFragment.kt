@@ -62,7 +62,10 @@ class HistoryFragment: Fragment(R.layout.fragment_history) {
     private fun setAdapters() {
         debtsAdapter = BaseListAdapter.create {
             DebtsHistoryViewHolder(ItemDebtBinding.inflate(layoutInflater, it, false))
-        }.apply { bindToRv(binding.rvDebts) }
+        }.apply {
+            bindToRv(binding.rvDebts)
+            binding.rvDebts.itemAnimator = null
+        }
         friendsAdapter = BaseListAdapter.create {
             FriendSelectionViewHolder(ItemUserPreviewBinding.inflate(layoutInflater, it, false))
         }.apply {
@@ -92,8 +95,7 @@ class HistoryFragment: Fragment(R.layout.fragment_history) {
     }
 
     private fun setDebts(list: List<DebtHistoryItem>) {
-        binding.tvNoDebts.isVisible = list.isEmpty()
-        binding.rvDebts.isVisible = list.isNotEmpty()
+        debtsAdapter.submitList(null)
         debtsAdapter.submitList(list)
     }
 
@@ -109,7 +111,6 @@ class HistoryFragment: Fragment(R.layout.fragment_history) {
     private fun displayLoading(value: Boolean) {
         binding.pbDebts.isVisible = value
         binding.rvDebts.isVisible = !value
-        if (value) binding.tvNoDebts.isVisible = false
     }
 
     private fun loadData() =
