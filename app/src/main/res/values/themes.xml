@@ -1,16 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Theme.DebtsTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/c1</item>
         <item name="colorPrimaryVariant">@color/c1</item>
         <item name="colorOnPrimary">@color/c3</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/c1</item>
         <item name="colorSecondaryVariant">@color/c1</item>
         <item name="colorOnSecondary">@color/c2</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DebtsTracker.LaunchScreen">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 </resources>
