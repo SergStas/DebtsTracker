@@ -11,10 +11,12 @@ class DebtsFilterViewHolder(
     private val binding: ItemHistoryFilterBinding,
 ): BaseViewHolder<DebtsFilterItem>(binding.root) {
     override fun bind(data: DebtsFilterItem) {
-        binding.root.run {
-            backgroundTintList = ColorStateList.valueOf(context.colorFromId(R.color.c4))
-            text = data.title
-            setOnClickListener { data.onClick(data) }
+        binding.run {
+            root.backgroundTintList = ColorStateList.valueOf(context.colorFromId(
+                if (data.isSelected) R.color.c1 else R.color.c7,
+            ))
+            root.setOnClickListener { data.onClick(data) }
+            tvContent.text = data.displayedName
         }
     }
 }

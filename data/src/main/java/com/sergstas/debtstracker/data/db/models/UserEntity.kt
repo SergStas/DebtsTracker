@@ -6,15 +6,14 @@ import com.sergstas.debtstracker.domain.models.User
 
 @Entity
 data class UserEntity(
-    @PrimaryKey val username: String,
-    val firstName: String?,
-    val lastName: String?,
-    val hasAvatar: Boolean = false,
+    @PrimaryKey val guid: String,
+    val fullName: String,
+    val isReal: Boolean,
 ) {
     companion object {
         fun User.toDbEntity() =
-            UserEntity(username, firstName, lastName, hasAvatar)
+            UserEntity(guid, username, isReal)
     }
 
-    fun toDomainData() = User(username, firstName, lastName, hasAvatar)
+    fun toDomainData() = User(guid, fullName, isReal)
 }

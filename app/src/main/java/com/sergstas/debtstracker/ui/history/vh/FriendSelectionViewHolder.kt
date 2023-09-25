@@ -12,7 +12,8 @@ class FriendSelectionViewHolder(
     override fun bind(data: FriendSelectionItem) {
         binding.run {
             root.setOnClickListener { data.onClick(data) }
-            tvName.text = context.getString(R.string.display_username_ph).format(data.username)
+            tvName.text = data.username
+            cardAvatar.strokeWidth = if (data.isSelected) 12 else 0
             Glide.with(context)
                 .load(data.avatarUrl)
                 .placeholder(R.drawable.ic_user_avatar_ph)

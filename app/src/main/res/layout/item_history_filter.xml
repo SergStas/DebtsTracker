@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="40dp"
-    style="@style/App.Button.Small"
+    android:layout_height="@dimen/history_filter_button_height"
+    style="@style/App.Card"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:textAllCaps="false"
-    android:paddingHorizontal="@dimen/m1"
-    tools:text="Pending confirm"
-    android:layout_margin="@dimen/m4"/>
+    android:backgroundTint="@color/c1"
+    app:contentPaddingLeft="@dimen/m3"
+    app:contentPaddingRight="@dimen/m3"
+    android:layout_marginHorizontal="@dimen/m5"
+    android:layout_marginVertical="@dimen/m3">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:textAllCaps="false"
+        tools:text="Pending confirm"
+        android:layout_gravity="center"
+        style="@style/App.Text.H6"
+        android:textColor="@color/c3" />
+
+</androidx.cardview.widget.CardView>

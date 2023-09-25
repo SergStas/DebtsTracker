@@ -6,7 +6,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.sergstas.debtstracker.R
 import com.sergstas.debtstracker.databinding.FragmentHistoryBinding
 import com.sergstas.debtstracker.databinding.ItemDebtBinding
@@ -42,36 +48,69 @@ class HistoryFragment: Fragment(R.layout.fragment_history) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 when(it) {
-                    is HistoryViewModel.State.DebtList -> setDebts(it)
-                    is HistoryViewModel.State.FilterList -> setFilters(it)
-                    is HistoryViewModel.State.FriendList -> setFriends(it)
+                    is HistoryViewModel.State.DebtList.Emitted -> setDebts(it.content)
+                    is HistoryViewModel.State.FilterList.Emitted -> setFilters(it.content)
+                    is HistoryViewModel.State.FriendList.Emitted -> setFriends(it.content)
+                    is HistoryViewModel.State.FilterList.UpdatedAt -> updateFilter(it.index)
+                    is HistoryViewModel.State.FriendList.UpdatedAt -> updateFriend(it.index)
+                    is HistoryViewModel.State.Loading -> displayLoading(it.value)
                 }
             }
         }
     }
 
     private fun setAdapters() {
-        friendsAdapter = BaseListAdapter.create {
-            FriendSelectionViewHolder(ItemUserPreviewBinding.inflate(layoutInflater, it, false))
-        }.apply { bindToRv(binding.rvUsers) }
-        filtersAdapter = BaseListAdapter.create {
-            DebtsFilterViewHolder(ItemHistoryFilterBinding.inflate(layoutInflater, it, false))
-        }.apply { bindToRv(binding.rvFilters) }
         debtsAdapter = BaseListAdapter.create {
             DebtsHistoryViewHolder(ItemDebtBinding.inflate(layoutInflater, it, false))
         }.apply { bindToRv(binding.rvDebts) }
+        friendsAdapter = BaseListAdapter.create {
+            FriendSelectionViewHolder(ItemUserPreviewBinding.inflate(layoutInflater, it, false))
+        }.apply {
+            bindToRv(
+                binding.rvUsers,
+                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            )
+        }
+        filtersAdapter = BaseListAdapter.create {
+            DebtsFilterViewHolder(ItemHistoryFilterBinding.inflate(layoutInflater, it, false))
+        }.apply {
+            bindToRv(
+                recyclerView = binding.rvFilters,
+                layoutManager = FlexboxLayoutManager(requireContext()).apply {
+                    justifyContent = JustifyContent.FLEX_START
+                    flexDirection = FlexDirection.ROW
+                    alignItems = AlignItems.FLEX_START
+                    flexWrap = FlexWrap.WRAP
+                }
+            )
+        }
     }
 
-    private fun setFriends(state: HistoryViewModel.State.FriendList) {
-        binding.rvUsers.isVisible = state.friends.isNotEmpty()
-        friendsAdapter.submitList(state.friends)
+    private fun setFriends(list: List<FriendSelectionItem>) {
+        binding.rvUsers.isVisible = list.isNotEmpty()
+        friendsAdapter.submitList(list)
     }
 
-    private fun setFilters(state: HistoryViewModel.State.FilterList) =
-        filtersAdapter.submitList(state.filters)
+    private fun setDebts(list: List<DebtHistoryItem>) {
+        binding.tvNoDebts.isVisible = list.isEmpty()
+        binding.rvDebts.isVisible = list.isNotEmpty()
+        debtsAdapter.submitList(list)
+    }
 
-    private fun setDebts(state: HistoryViewModel.State.DebtList) =
-        debtsAdapter.submitList(state.debts)
+    private fun updateFilter(index: Int) =
+        filtersAdapter.notifyItemChanged(index)
+
+    private fun updateFriend(index: Int) =
+        friendsAdapter.notifyItemChanged(index)
+
+    private fun setFilters(list: List<DebtsFilterItem>) =
+        filtersAdapter.submitList(list)
+
+    private fun displayLoading(value: Boolean) {
+        binding.pbDebts.isVisible = value
+        binding.rvDebts.isVisible = !value
+        if (value) binding.tvNoDebts.isVisible = false
+    }
 
     private fun loadData() =
         viewModel.loadContents()

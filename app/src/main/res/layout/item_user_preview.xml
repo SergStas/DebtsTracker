@@ -7,16 +7,25 @@
     android:orientation="vertical"
     tools:ignore="UseCompoundDrawables">
 
-    <ImageView
-        android:id="@+id/iv_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_user_avatar_ph"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_avatar"
+        android:layout_width="@dimen/user_preview_avatar_size"
+        android:layout_height="@dimen/user_preview_avatar_size"
         android:layout_margin="@dimen/m2"
+        app:cardCornerRadius="@dimen/rad1"
+        app:strokeColor="@color/c1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@null" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:src="@drawable/ic_launcher_background"
+            android:contentDescription="@null" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tv_name"
@@ -24,7 +33,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/card_avatar"
+        android:textAlignment="center"
         android:lines="1"
         tools:text="Abobus Bazirovanniy"
         style="@style/App.Text.H8"

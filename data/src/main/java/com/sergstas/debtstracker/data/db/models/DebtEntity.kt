@@ -20,8 +20,8 @@ data class DebtEntity(
     companion object {
         fun Debt.toDbEntity() =
             DebtEntity(
-                fromUser = lender.username,
-                toUser = borrower.username,
+                fromUser = lender.guid,
+                toUser = borrower.guid,
                 currency = currency,
                 sum = sum,
                 status = status.name,

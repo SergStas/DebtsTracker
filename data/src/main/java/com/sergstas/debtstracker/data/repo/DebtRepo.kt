@@ -2,6 +2,8 @@ package com.sergstas.debtstracker.data.repo
 
 import com.sergstas.debtstracker.data.db.dao.DebtDao
 import com.sergstas.debtstracker.data.db.models.DebtEntity.Companion.toDbEntity
+import com.sergstas.debtstracker.data.repo.FriendsRepo.UsersMock.me
+import com.sergstas.debtstracker.data.repo.FriendsRepo.UsersMock.pena
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
 import com.sergstas.debtstracker.domain.repo.IDebtRepo
@@ -21,8 +23,8 @@ class DebtRepo @Inject constructor(
 
     private val mockList = listOf(
         Debt(
-            lender = User("ABOBA", null, null),
-            borrower = User("PENA", "Denis", "Petrov"),
+            lender = me,
+            borrower = pena,
             currency = "rub",
             sum = 54.0,
             creationDate = LocalDateTime.of(1488, 8, 22, 0, 0).toEpochSecond(ZoneOffset.UTC),
@@ -47,15 +49,14 @@ class DebtRepo @Inject constructor(
 
     private suspend fun Debt.doesMatchArgs(args: GetAllDebtsUseCase.FilterArgs?) =
         args == null || (args.friends?.let {
-            it.isEmpty() || borrower.username in it.map(User::username)
+            it.isEmpty() || borrower.guid in it.map(User::guid)
         } ?: true) && (args.types?.let { tags ->
             tags.all { tag  ->
                 when (tag) {
-                    GetAllDebtsUseCase.FilterArgs.DebtTag.All -> true
                     GetAllDebtsUseCase.FilterArgs.DebtTag.Active -> status !in listOf(Debt.Status.DECLINED, Debt.Status.CONFIRMED)
                     GetAllDebtsUseCase.FilterArgs.DebtTag.Accepted -> status !in listOf(Debt.Status.DECLINED, Debt.Status.ASSIGNED)
-                    GetAllDebtsUseCase.FilterArgs.DebtTag.ToPay -> authRepo.getAuthedUser()?.username == borrower.username
-                    GetAllDebtsUseCase.FilterArgs.DebtTag.ToReceive -> authRepo.getAuthedUser()?.username == lender.username
+                    GetAllDebtsUseCase.FilterArgs.DebtTag.ToPay -> authRepo.getAuthedUser()?.guid == borrower.guid
+                    GetAllDebtsUseCase.FilterArgs.DebtTag.ToReceive -> authRepo.getAuthedUser()?.guid == lender.guid
                     GetAllDebtsUseCase.FilterArgs.DebtTag.PendingConfirm -> status == Debt.Status.PAID
                     GetAllDebtsUseCase.FilterArgs.DebtTag.Declined -> status == Debt.Status.DECLINED
                 }

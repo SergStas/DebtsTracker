@@ -1,5 +1,6 @@
 package com.sergstas.debtstracker.data.repo
 
+import com.sergstas.debtstracker.data.repo.FriendsRepo.UsersMock.me
 import com.sergstas.debtstracker.data.storage.AppStorage
 import com.sergstas.debtstracker.domain.models.AuthArgs
 import com.sergstas.debtstracker.domain.models.AuthTokens
@@ -18,14 +19,14 @@ class AuthRepo @Inject constructor(
     override suspend fun login(authArgs: AuthArgs): IAuthRepo.AuthResult.Login =
         withContext(dispatcher) {
             delay(500)
-            appStorage.storeAuthedUser(User("ABOBA", null, null))
+            appStorage.storeAuthedUser(me)
             IAuthRepo.AuthResult.Login.Success(AuthTokens("", ""))
         }
 
     override suspend fun register(authArgs: AuthArgs): IAuthRepo.AuthResult.Register =
         withContext(dispatcher) {
             delay(500)
-            appStorage.storeAuthedUser(User("ABOBA", null, null))
+            appStorage.storeAuthedUser(me)
             IAuthRepo.AuthResult.Register.Success(AuthTokens("", ""))
         }
 

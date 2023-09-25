@@ -15,7 +15,7 @@ class GetAllDebtsUseCase @Inject constructor(
         val types: List<DebtTag>? = null
     ) {
         enum class DebtTag {
-            All, Active, Accepted, ToPay, ToReceive, PendingConfirm, Declined;
+            Active, Accepted, ToPay, ToReceive, PendingConfirm, Declined;
         }
     }
 }

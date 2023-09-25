@@ -30,6 +30,7 @@ class DebtsHistoryViewHolder(
             tvSum.setTextColor(context.colorFromId(
                 if (data.isIncoming) R.color.c5 else R.color.c6,
             ))
+            tvUsername.text = data.userNameToken
             tvStatus.text = data.status
             ivMarkerWarn.isVisible = data.isExpirationNear
             Glide.with(context)

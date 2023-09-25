@@ -41,13 +41,14 @@
     <string name="menu_nav_main_friends">Friends list</string>
     <string name="menu_nav_main_settings">Settings</string>
     <string name="display_username_ph">\@%s</string>
-    <string name="history_tv_no_entries">No debt entries yet</string>
-    <string name="item_debt_tv_incoming">To recieve</string>
+    <string name="history_tv_no_entries">No debt entries found</string>
+    <string name="item_debt_tv_incoming">To receive</string>
     <string name="item_debt_tv_outgoing">To pay</string>
     <string name="item_debt_tv_desc_label_true">Description</string>
     <string name="item_debt_tv_desc_label_false">No description</string>
     <string name="debt_price_token_ph">%s %s</string>
     <string name="app_date_format">dd.MM.yyyy</string>
+    <string name="user_fullname_duplicates_ph">%s (%n)</string>
 
     <plurals name="home_tv_debts">
         <item quantity="one">%s debt</item>
