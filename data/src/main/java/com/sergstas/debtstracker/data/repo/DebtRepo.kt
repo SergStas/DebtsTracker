@@ -4,6 +4,7 @@ import com.sergstas.debtstracker.data.db.dao.DebtDao
 import com.sergstas.debtstracker.data.db.models.DebtEntity.Companion.toDbEntity
 import com.sergstas.debtstracker.data.repo.FriendsRepo.UsersMock.me
 import com.sergstas.debtstracker.data.repo.FriendsRepo.UsersMock.pena
+import com.sergstas.debtstracker.domain.models.Currency
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
 import com.sergstas.debtstracker.domain.repo.IDebtRepo
@@ -25,7 +26,7 @@ class DebtRepo @Inject constructor(
         Debt(
             lender = me,
             borrower = pena,
-            currency = "rub",
+            currency = Currency.Rub,
             sum = 54.0,
             creationDate = LocalDateTime.of(1488, 8, 22, 0, 0).toEpochSecond(ZoneOffset.UTC),
             expirationDate = null,
@@ -61,5 +62,7 @@ class DebtRepo @Inject constructor(
                     GetAllDebtsUseCase.FilterArgs.DebtTag.Declined -> status == Debt.Status.DECLINED
                 }
             }
-        } ?: true)
+        } ?: true) && (args.currencies?.let {
+            it.isEmpty() || currency in it
+        } ?: true )
 }

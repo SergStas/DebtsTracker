@@ -3,7 +3,7 @@ package com.sergstas.debtstracker.domain.models
 data class Debt(
     val lender: User,
     val borrower: User,
-    val currency: String,
+    val currency: Currency,
     val sum: Double,
     val creationDate: Long,
     val expirationDate: Long?,

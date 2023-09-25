@@ -2,24 +2,24 @@ package com.sergstas.debtstracker.ui.create
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sergstas.debtstracker.domain.models.Currency
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
-import com.sergstas.debtstracker.domain.usecases.currencies.GetCurrenciesListUseCase
 import com.sergstas.debtstracker.domain.usecases.debts.CreateDebtUseCase
 import com.sergstas.debtstracker.domain.usecases.auth.GetAuthedUserUseCase
-import com.sergstas.debtstracker.domain.usecases.users.GetFriendsListUseCase
+import com.sergstas.debtstracker.domain.usecases.users.GetFriendListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import org.apache.commons.lang3.StringUtils
 import javax.inject.Inject
 import kotlin.math.abs
 
 @HiltViewModel
 class CreateDebtViewModel @Inject constructor(
     private val createDebt: CreateDebtUseCase,
-    private val getCurrenciesList: GetCurrenciesListUseCase,
-    private val getFriendsList: GetFriendsListUseCase,
+    private val getFriendsList: GetFriendListUseCase,
     private val getAuthedUser: GetAuthedUserUseCase,
 ): ViewModel() {
     val state get() = _state.asSharedFlow()
@@ -39,7 +39,7 @@ class CreateDebtViewModel @Inject constructor(
     fun loadCurrencies() {
         viewModelScope.launch {
             _state.emit(Event.Loading(true))
-            _state.emit(Event.CurrenciesListLoaded(getCurrenciesList()))
+            _state.emit(Event.CurrenciesListLoaded(Currency.values().map { it.name.lowercase() }))
             _state.emit(Event.Loading(false))
         }
     }
@@ -79,7 +79,7 @@ class CreateDebtViewModel @Inject constructor(
                 val debt = Debt(
                     lender = if (isIncoming) getAuthedUser()!! else friend,
                     borrower = if (isIncoming) friend else getAuthedUser()!!,
-                    currency = currency,
+                    currency = Currency.valueOf(StringUtils.capitalize(currency)),
                     sum = sum.toDouble(),
                     creationDate = System.currentTimeMillis(),
                     expirationDate = expirationDate,

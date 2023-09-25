@@ -7,7 +7,7 @@ import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
 import com.sergstas.debtstracker.domain.usecases.auth.GetAuthedUserUseCase
 import com.sergstas.debtstracker.domain.usecases.debts.GetAllDebtsUseCase
-import com.sergstas.debtstracker.domain.usecases.users.GetFriendsListUseCase
+import com.sergstas.debtstracker.domain.usecases.users.GetFriendListUseCase
 import com.sergstas.debtstracker.ui.abstractions.BaseViewModel
 import com.sergstas.debtstracker.ui.history.models.DebtHistoryItem
 import com.sergstas.debtstracker.ui.history.models.DebtsFilterItem
@@ -24,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val getAllDebts: GetAllDebtsUseCase,
-    private val getFriendsList: GetFriendsListUseCase,
+    private val getFriendsList: GetFriendListUseCase,
     private val getAuthedUser: GetAuthedUserUseCase,
     private val idGenerator: IdGenerator,
     application: Application,
@@ -55,7 +55,7 @@ class HistoryViewModel @Inject constructor(
             isIncoming = debt.lender == user,
             userAvatarUrl = null,
             userNameToken = if (debt.lender == user) debt.borrower.username else debt.lender.username,
-            sumToken = context.getString(R.string.debt_price_token_ph).format(debt.sum.toString(), debt.currency.lowercase()),
+            sumToken = context.getString(R.string.debt_price_token_ph).format(debt.sum.toString(), debt.currency.name.lowercase()),
             creationDateToken = debt.creationDate.formatAsDate(context.getString(R.string.app_date_format)),
             expirationDateToken = debt.expirationDate?.run {
                 formatAsDate(context.getString(R.string.app_date_format))

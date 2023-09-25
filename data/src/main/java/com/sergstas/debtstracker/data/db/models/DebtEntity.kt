@@ -2,6 +2,7 @@ package com.sergstas.debtstracker.data.db.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.sergstas.debtstracker.domain.models.Currency
 import com.sergstas.debtstracker.domain.models.Debt
 import com.sergstas.debtstracker.domain.models.User
 
@@ -22,7 +23,7 @@ data class DebtEntity(
             DebtEntity(
                 fromUser = lender.guid,
                 toUser = borrower.guid,
-                currency = currency,
+                currency = currency.name,
                 sum = sum,
                 status = status.name,
                 creationDate = creationDate,
@@ -35,7 +36,7 @@ data class DebtEntity(
         Debt(
             lender = fromUser,
             borrower = toUser,
-            currency = currency,
+            currency = Currency.valueOf(currency),
             status = Debt.Status.valueOf(status),
             sum = sum,
             creationDate = creationDate,

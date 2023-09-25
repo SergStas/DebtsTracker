@@ -50,6 +50,7 @@
     <string name="debt_price_token_ph">%s %s</string>
     <string name="app_date_format">dd.MM.yyyy</string>
     <string name="user_fullname_duplicates_ph">%s (%n)</string>
+    <string name="item_friend_list_tv_imaginary">User not confirmed</string>
 
     <plurals name="home_tv_debts">
         <item quantity="one">%s debt</item>

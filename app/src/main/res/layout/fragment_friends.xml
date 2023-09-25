@@ -3,6 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.friends.FriendsListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.friends.FriendListFragment"
+    android:padding="@dimen/m1">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_friends"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_friend_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

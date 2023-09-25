@@ -19,6 +19,7 @@
     <dimen name="create_b_add_client_size">24dp</dimen>
     <dimen name="auth_card_width">300dp</dimen>
     <dimen name="history_filter_button_height">28dp</dimen>
-    <dimen name="user_preview_avatar_size">48dp</dimen>
+    <dimen name="user_avatar_size">52dp</dimen>
+    <dimen name="rad_user_avatar">26dp</dimen>
 
 </resources>

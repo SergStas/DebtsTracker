@@ -9,10 +9,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_avatar"
-        android:layout_width="@dimen/user_preview_avatar_size"
-        android:layout_height="@dimen/user_preview_avatar_size"
+        android:layout_width="@dimen/user_avatar_size"
+        android:layout_height="@dimen/user_avatar_size"
         android:layout_margin="@dimen/m2"
-        app:cardCornerRadius="@dimen/rad1"
+        app:cardCornerRadius="@dimen/rad_user_avatar"
         app:strokeColor="@color/c1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

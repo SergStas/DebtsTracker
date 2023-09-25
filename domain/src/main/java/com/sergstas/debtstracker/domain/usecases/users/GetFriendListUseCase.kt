@@ -5,7 +5,7 @@ import com.sergstas.debtstracker.domain.repo.IAuthRepo
 import com.sergstas.debtstracker.domain.repo.IFriendsRepo
 import javax.inject.Inject
 
-class GetFriendsListUseCase @Inject constructor(
+class GetFriendListUseCase @Inject constructor(
     private val friendsRepo: IFriendsRepo,
     private val authRepo: IAuthRepo,
 ) {
